@@ -1,0 +1,33 @@
+Artifacts(artifactNumber VARCHAR(10), artifactLength_meters decimal(7), artifactWidth_meters decimal(7), artifactHeight_meters decimal(7), artifactMaterial VARCHAR(20), optimalStorageHumidity decimal(10))
+Keys of Artifacts: {artifactNumber}
+
+Employees(firstName VARCHAR(30), middleName VARCHAR(30), lastName VARCHAR(30), socialSecurityNumber VARCHAR(20), address VARCHAR(30), phonenumber VARCHAR(10), salary numeric(10), unionNumber numeric(5), position VARCHAR(30), id numeric(10))
+keys of Employees: {id}
+
+Expertise(technicianID numeric(9), material VARCHAR(20))
+Keys of Expertise: {technicianID references Employees(id)}
+
+Technicians(technicianType VARCHAR(20), technician_id numeric(10))
+Keys of Technicians: {technician_id references Employees(id)}
+
+MuseumGuides(lastTestDate date, guide_id numeric(10))
+Keys of MuseumGuides: {guide_id references Employees(id)}
+
+ArtifactTests(arifactNumber VARCHAR(10), ministryCultureTestNum numeric(10), testName VARCHAR(40), maxPossibleTestScore numeric(4), timeofInspection time(0), testDuration time(0), testDate date, testScore numeric(4))
+Keys of ArtifactTests: {artifactNumber references Artifacts(artifactNumber)}
+
+I decided to factor the museum guides and technicians into a broader relation called Employees since both jobs are a type of employee and they will both have similar fields such as salary and personal info. 
+I included a unique identifier employee Id that can be used to join with other tables with more specific jobs to get more information about those specific jobs. Therefore, I also created tables 
+for more specific info about the technicians or museum guides.
+
+I chose the social security number to be unique and not null, since every employee must have one
+for things like health care, taxes, personal info and information like that. Employee is unique because every
+employee needs to be identifiable in order to retrieve information about them.
+I also made the Ministry of Culture Test Number unique because I wanted every test to be documented and all information
+about a specific test to be easily retrieved.
+Similarly, the artifacts table has a primary key artifactNumber that is unique so information about specific artifacts
+can easily be retrieved and ever artifact is uniquely identifiable. This also helps with finding all tests associated with the artifacts.
+
+I added constraints that the dimensions and humidity of the artifacts be >= 0, since negative values don't make any sense.
+I also added constraints for the id numbers and SSN to be positive and nonzero because you can't have an ID of zero or negative. However I made the salary just >= 0 because 
+maybe some employees are volunteers or on a temporary trial basis so they would have 0 wage but it can't be negative.

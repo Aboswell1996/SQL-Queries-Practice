@@ -1,0 +1,37 @@
+Artifacts
+-artifact number (EG CL892)
+- dimensions
+- weight
+- material
+- optimal storage humidity
+
+Technicians
+-conversation or restoration or both
+-name
+- SIN
+- address
+- phone number
+- salary
+- union #
+
+Expertise
+- technician
+- material
+
+museum guides
+- SIN
+- address
+- phone number
+- salary
+- date last test was performed
+- union #
+
+artifact tests
+- artifact number
+- Ministry of Culture test number
+- name
+- max test score
+- time inspected
+- duration
+- date
+- score

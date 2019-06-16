@@ -1,0 +1,68 @@
+CREATE TABLE Artifacts (
+artifactNumber VARCHAR(10) PRIMARY KEY,
+artifactLength_meters decimal(7),
+artifactWidth_meters decimal(7),
+artifactHeight_meters decimal(7),
+artifactMaterial VARCHAR(20),
+optimalStorageHumidity decimal(10)
+);
+CREATE TABLE Employees (
+firstName VARCHAR(30),
+middleName VARCHAR(30),
+lastName VARCHAR(30),
+socialSecurityNumber VARCHAR(20) UNIQUE NOT NULL,
+address VARCHAR(30),
+phonenumber VARCHAR(10),
+salary numeric(10),
+unionNumber numeric(5),
+position VARCHAR(30),
+id numeric(10) PRIMARY KEY
+);
+
+CREATE TABLE Expertise (
+technicianID numeric(9) REFERENCES Employees(id),
+material VARCHAR(20)
+);
+
+CREATE TABLE Technicians (
+technicianType VARCHAR(20),
+technician_id numeric(10) REFERENCES Employees(id)
+);
+
+CREATE TABLE MuseumGuides (
+lastTestDate date,
+guide_id numeric(10) REFERENCES Employees(id)
+);
+
+CREATE TABLE ArtifactTests (
+artifactNumber VARCHAR(10) REFERENCES Artifacts(artifactNumber),
+ministryCultureTestNum numeric(10) UNIQUE,
+testName VARCHAR(40),
+maxPossibleTestScore numeric(4),
+timeofInspection time(0),
+testDuration time(0),
+testDate date,
+testScore numeric(4)
+);
+
+INSERT INTO Artifacts VALUES
+('ABC123', 49.350, 27.475, 5.234, 'Gold', 0.75),
+('DEF456', 10.000, 5.000, 5.000, 'Fossil', 0.2);
+
+INSERT INTO Employees VALUES
+('Alex', 'Anatoli', 'Boswell', 123456789, '123 SFU', '7781234567', '100000', '12', 'Technician' , 00000001),
+('Employee1', 'M', 'Last', 123456666, '234 SFU', '1234567890', '25000', '12', 'MuseumGuide', 0000000002);
+
+INSERT INTO Expertise VALUES
+(000000001, 'Gold'),
+(000000001, 'Fossil');
+
+INSERT INTO Technicians VALUES
+('Conservationist', 1);
+
+INSERT INTO MuseumGuides VALUES
+('2019-01-27', 2);
+
+INSERT INTO ArtifactTests VALUES
+('ABC123', 1, 'Weight Test', 100, '3:40', '00:30', '2019-01-20', 78),
+('DEF456', 2, 'Humidity Test', 100, '11:30', '01:00', '2019-12-23', 60);

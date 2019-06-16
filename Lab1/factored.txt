@@ -1,0 +1,38 @@
+Artifacts
+- artifact number (EG CL892) (key)
+- dimensions
+- weight
+- material
+- optimal storage humidity
+
+Expertise
+- employee id (foreign key)
+- material
+
+Employees
+- Name
+- SIN (key)
+- address
+- phone number
+- salary
+- union #
+- role(guide or tech)
+- employee ID # (key)
+
+Technicians
+- type of technician
+- ID (foreign key)
+
+Museum Guides
+- date test was late performed
+- ID (foreign key)
+
+artifact tests
+- artifact number ( foreign key)
+- Ministry of Culture test number
+- name
+- max test score
+- time inspected
+- duration
+- date
+- score
